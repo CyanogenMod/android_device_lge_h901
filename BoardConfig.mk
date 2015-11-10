@@ -14,13 +14,13 @@
 # limitations under the License.
 #
 
-# inherit from common g4
--include device/lge/g4-common/BoardConfigCommon.mk
+# inherit from common v10
+-include device/lge/v10-common/BoardConfigCommon.mk
 
-TARGET_OTA_ASSERT_DEVICE := g4,p1,h811
+TARGET_OTA_ASSERT_DEVICE := v10,pplus,h901
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_h811_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_h901_defconfig
 
 # inherit from the proprietary version
--include vendor/lge/h811/BoardConfigVendor.mk
+-include vendor/lge/h901/BoardConfigVendor.mk

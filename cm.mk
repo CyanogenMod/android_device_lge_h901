@@ -1,4 +1,4 @@
-$(call inherit-product, device/lge/h811/full_h811.mk)
+$(call inherit-product, device/lge/h901/full_h901.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
@@ -7,10 +7,10 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 
 
-PRODUCT_NAME := cm_h811
+PRODUCT_NAME := cm_h901
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_DEVICE="g4" \
-    PRODUCT_NAME="g4_global_com" \
-    BUILD_FINGERPRINT="lge/p1_global_com/p1:5.1/LMY47D/151161552fef7:user/release-keys" \
-    PRIVATE_BUILD_DESC="p1_global_com-user 5.1 LMY47D 151161552fef7 release-keys"
+    PRODUCT_DEVICE="pplus" \
+    PRODUCT_NAME="pplus_tmo_us" \
+    BUILD_FINGERPRINT="lge/pplus_tmo_us/pplus:5.1.1/LMY47V/152801355bef0:user/release-keys" \
+    PRIVATE_BUILD_DESC="pplus_tmo_us-user 5.1.1 LMY47V 152801355bef0 release-keys"
