@@ -1,0 +1,20 @@
+/dev/block/platform/f9824900.sdhci/by-name/persist    u:object_r:system_block_device:s0
+/dev/block/platform/f9824900.sdhci/by-name/drm        u:object_r:system_block_device:s0
+
+/dev/bcm2079x            u:object_r:nfc_device:s0
+
+
+/dev/rfkill                 u:object_r:rfkill_device:s0
+
+/dev/diag_lge               u:object_r:lge_diag_device:s0
+
+/sns                        u:object_r:sensors_data_file:s0
+/sns/cal(/.*)?              u:object_r:sensors_data_file:s0
+
+
+/dev/ttyHSL1                            u:object_r:cir_device:s0
+
+/system/bin/btpd          u:object_r:btpd_exec:s0
+/sys/devices/virtual/input/lge_fingerprint/spi_prepare   u:object_r:sysfs_spi_prepare:s0
+/dev/spich                         u:object_r:video_device:s0
+
