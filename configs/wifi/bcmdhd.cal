@@ -1,0 +1,134 @@
+# LG 43455 P+ TMUS Rev.1.0 NVRAM for BRCM BOM Changes - 2015/08/21
+# FW 7.45.60.3 LG release
+
+NVRAMRev=$Rev: 498373 $
+sromrev=11
+vendid=0x14e4
+devid=0x43ab
+manfid=0x2d0
+prodid=0x06e4
+
+#Dummy Mac. Address
+macaddr=00:90:0C:BA:CD:88
+
+nocrc=1
+boardtype=0x6e4
+boardrev=0x1304
+
+#XTAL 37.4MHz
+xtalfreq=37400
+
+#------------------------------------------------------
+#boardflags: 5GHz eTR switch by default
+#            2.4GHz eTR switch by default
+#            bit1 for btcoex
+boardflags=0x00080201
+boardflags2=0x40000000
+boardflags3=0x48200100
+phycal_tempdelta=15
+rxchain=1
+txchain=1
+aa2g=1
+aa5g=1
+ag0=0
+tssipos5g=1
+tssipos2g=1
+femctrl=0
+AvVmid_c0=0,157,1,126,1,126,1,126,1,126
+
+pa2ga0=0xff58,0x17dc,0xfd3d
+pa2ga1=0xff8b,0x1003,0xfdce
+pa5ga0=0xff56,0x163e,0xfd5e,0xff59,0x168c,0xfd4f,0xff56,0x16a9,0xfd54,0xff5b,0x16d1,0xfd55
+pa5ga1=0xffcb,0x0ef7,0xfddc,0xffcf,0x0ede,0xfddd,0xffca,0x0ee7,0xfde5,0xffb4,0x0ecc,0xfde6
+
+itrsw=1
+cckpwroffset0=-3
+pdoffset2g40ma0=10
+pdoffset40ma0=0xaaaa
+pdoffset80ma0=0xaaaa
+extpagain5g=2
+extpagain2g=2
+
+lowpowerrange2g=0
+lowpowerrange5g=0
+tworangetssi2g=1
+tworangetssi5g=1
+# LTECX flags
+# WCI2
+ltecxmux=0
+ltecxpadnum=0x0504
+ltecxfnsel=0x22
+ltecxgcigpio=0x32
+muxenab=0x10
+#---------------------------------------------------------------------
+# CCK Output Power = (84/4=21)-1.5 = 19.5dBm
+maxp2ga0=84
+
+# 54/48/36/24M/18/12/9/6 = 15/16/16/16/16/16/15/15
+# MCS1&2(11n&ac 40M) / MCS1&2 (11n&ac 20M) / 12&18Mbps(11a/g) / 6&9(11a/g) : 19-X=13/13/15/15
+ofdmlrbw202gpo=0x0063
+
+# 54/48/36/24M power offset in half dBm : 19-X=14/14/14/14
+dot11agofdmhrbw202gpo=0xaaaa
+
+# C9/C8/M7/M6/M5/M4/M3/M0-2 ( if need to control MCS1 and MCS 2 separately, then use ofdmlrbw202gpo)
+# C9/C8/M7/M6/M5/M4/M3/M0-2 19-X=13/13/13/14/14/14/15/15
+mcsbw202gpo=0xdccaaa89
+mcsbw402gpo=0x99555533
+
+
+#-----------------------------------------------------------------------------
+# 5G Output Power Set : maxp5ga0=74,74,74,74 = 17dBm (74/4=18.5-1.5=17)
+maxp5ga0=82,82,82,82
+
+# C9/C8/M7/M6/M5/M4/M3/M0.2 = 13/14/14/14/14/14/14/14/15/15
+mcsbw205glpo=0x86666631
+mcsbw205gmpo=0x86666631
+mcsbw205ghpo=0x86666631
+
+# C9/C8/M7/M6/M5/M4/M3/M0.2 = 12/13/13/13/13/13/13/14/14/14
+mcsbw405glpo=0xcaaaa888
+mcsbw405gmpo=0xcaaaa888
+mcsbw405ghpo=0xcaaaa888
+
+# C9/C8/M7/M6/M5/M4/M3/M0.2 = 12/13/13/13/13/13/13/13/13/14
+mcsbw805glpo=0xeeeeeecc
+mcsbw805gmpo=0xeeeeeecc
+mcsbw805ghpo=0xeeeeeecc
+
+
+
+swctrlmap_2g=0x00040004,0x00020002,0x00040004,0x010a02,0x1ff
+swctrlmap_5g=0x00100010,0x00200020,0x00200020,0x010a02,0x2f4
+swctrlmapext_5g=0x00000000,0x00000000,0x00000000,0x000000,0x000
+swctrlmapext_2g=0x00000000,0x00000000,0x00000000,0x000000,0x000
+
+vcodivmode=1
+deadman_to=481500000
+
+ed_thresh2g=-54
+ed_thresh5g=-54
+eu_edthresh2g=-54
+eu_edthresh5g=-54
+ldo1=4
+rawtempsense=0x1ff
+muxenab=0x10
+#For Firmware 57 and later
+cckPwrIdxCorr=3
+dot11b_opts=0x3aa85
+
+#2.4G TX Compensation parameter for 2.4G(-15 ~ +3dB)
+powoffs2gtna0=2,2,2,0,0,0,0,1,1,0,0,1,2,0
+
+
+#5G TX Compensation parameter(CH36, Ch64, CH100, CH140, CH144, CH149, CH165)(-15 ~ +3dB)
+powoffs5g20mtna0=2,0,2,0,0,0,0
+#5G TX Compensation parameter(CH38, Ch62, CH102, CH142 CH151)(-15 ~ +3dB)
+#powoffs5g40mtna0=-40,-40,-40,-40,-40
+#5G TX Compensation parameter(CH42, Ch58, CH106, CH138, CH155) (-15 ~ +3dB)
+#powoffs5g80mtna0=-40,-40,-40,-40,-40
+
+#	SAR Scenario Back Off
+# 2G core0 15dBm Setting
+dynamicsarctrl_2g=0x00BC
+#dynamicsarctrl_5g=0x00a0
