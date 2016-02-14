@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,15 +12,162 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-# inherit from common v10
--include device/lge/v10-common/BoardConfigCommon.mk
+BOARD_VENDOR := lge
 
-TARGET_OTA_ASSERT_DEVICE := v10,pplus,h901
+COMMON_PATH := device/lge/h901
+
+TARGET_SPECIFIC_HEADER_PATH := $(COMMON_PATH)/include
+
+# Platform
+TARGET_BOARD_PLATFORM := msm8992
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno418
+
+# CPU
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
+
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
+TARGET_USES_64_BIT_BINDER := true
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := MSM8992
+TARGET_NO_BOOTLOADER := true
+
+TARGET_USES_C2D_COMPOSITION := true
 
 # Kernel
+BOARD_DTBTOOL_ARGS := -2
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 msm_rtb.filter=0x37 boot_cpus=0-5
+BOARD_KERNEL_BASE := 0x00078000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_RAMDISK_OFFSET := 0x02000000
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01f88000 --tags_offset 0x01d88000
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_SOURCE := kernel/lge/pplus
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_USES_UNCOMPRESSED_KERNEL := true
 TARGET_KERNEL_CONFIG := cyanogenmod_h901_defconfig
+
+# Partitions
+BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
+BOARD_BOOTIMAGE_PARTITION_SIZE := 41943040
+BOARD_CACHEIMAGE_PARTITION_SIZE := 1291845632
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 41943040
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4492099584
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 56290705408
+TARGET_USERIMAGES_USE_EXT4 := true
+
+# Recovery
+TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
+TARGET_OTA_ASSERT_DEVICE := v10,pplus,h901
+
+# Audio
+BOARD_USES_ALSA_AUDIO := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE := true
+AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+AUDIO_FEATURE_ENABLED_MULTIPLE_TUNNEL := true
+USE_CUSTOM_AUDIO_POLICY := 1
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+#AUDIO_FEATURE_ENABLED_INCALL_MUSIC := true
+
+
+# Wi-Fi
+BOARD_WLAN_DEVICE := bcmdhd
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+WIFI_DRIVER_FW_PATH_AP := "/system/etc/firmware/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P := "/system/etc/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/firmware/fw_bcmdhd.bin"
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUEDROID_VENDOR_CONF := device/lge/h901/bluetooth/libbt_vndcfg.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/lge/h901/bluetooth
+
+# GPS
+TARGET_GPS_HAL_PATH := $(COMMON_PATH)/gps
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm8992
+TARGET_NO_RPC := true
+
+# Camera
+USE_DEVICE_SPECIFIC_CAMERA := true
+COMMON_GLOBAL_CFLAGS += -DLG_CAMERA_HARDWARE
+
+# Display
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_USES_ION := true
+TARGET_USES_NEW_ION_API :=true
+TARGET_USES_OVERLAY := true
+USE_OPENGL_RENDERER := true
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true 
+MAX_VIRTUAL_DISPLAY_DIMENSION := 1720
+
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+
+HAVE_ADRENO_SOURCE:= false
+OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
+# Logging
+TARGET_USES_LOGD=false
+
+# Offmode Charging
+COMMON_GLOBAL_CFLAGS += \
+    -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' \
+    -DBOARD_CHARGING_CMDLINE_VALUE='"chargerlogo"'
+
+# Power
+TARGET_POWERHAL_VARIANT := qcom
+
+# Qualcomm support
+BOARD_USES_QCOM_HARDWARE := true
+
+# Init
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+#BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
+
+# Disable HW based full disk encryption
+TARGET_HW_DISK_ENCRYPTION := false
+
+# Enable keymaster app checking
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
+# Vendor init
+TARGET_INIT_VENDOR_LIB := libinit_msm
+
+# RIL
+TARGET_RELEASE_CPPFLAGS += -DNEEDS_LGE_RIL_SYMBOLS
+
+# CMHW
+BOARD_HARDWARE_CLASS := $(COMMON_PATH)/cmhw/
 
 # inherit from the proprietary version
 -include vendor/lge/h901/BoardConfigVendor.mk
