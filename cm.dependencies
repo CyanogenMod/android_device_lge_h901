@@ -1,6 +1,30 @@
 [
   {
-    "repository": "android_device_lge_v10-common",
-    "target_path": "device/lge/v10-common"
+    "repository": "android_kernel_lge_pplus",
+    "target_path": "kernel/lge/pplus"
+  },
+  {
+    "repository": "android_device_qcom_common",
+    "target_path": "device/qcom/common"
+  },
+  {
+    "repository": "android_external_mm-dash",
+    "target_path": "external/mm-dash"
+  },
+ {
+    "repository": "android_external_stlport", 
+    "target_path": "external/stlport"
+ },
+ {
+    "repository": "android_external_sony_boringssl-compat",
+    "target_path": "external/sony/boringssl-compat"
+  },
+  {
+    "repository": "android_hardware_sony_timekeep",
+    "target_path": "hardware/sony/timekeep"
+  },
+  {
+    "repository": "android_hardware_sony_thermanager",
+    "target_path": "hardware/sony/thermanager"
   }
 ]
